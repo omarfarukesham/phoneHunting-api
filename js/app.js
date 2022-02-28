@@ -9,7 +9,7 @@ const productDetails = document.getElementById('productDetailsInfo')
 const searchMobile = () =>{
     const searchText = searchBox.value 
     if(searchText == '' || isNaN(searchText) == false ){
-        getError.innerText = 'Empty and Numbers is not allow,search by Name of Mobile Brand'
+        getError.innerText = 'Empty & Numbers is not allow, search by Name of Mobile Brand'
         searchBox.value = ''
         container.innerHTML = ''
         productDetails.innerText = ''
@@ -71,13 +71,15 @@ const displayProductDetails = (productInfo) => {
     const div = document.createElement('div')
     div.classList.add('card')
     div.innerHTML = `
-                <img src="${productInfo.image} " class="card-img-top" alt="...">
+            
+                <img src="${productInfo.image} " class="card-img-top" alt="product Image">
                 <div class="card-body">
-                  <h5 class="card-title">${productInfo.brand}</h5>
-                  <p class="card-text">${productInfo.mainFeatures.memory}</p>
-                  <p class="card-text">${productInfo.mainFeatures.displaySize}</p>
-                  <p class="card-text">${productInfo.mainFeatures.sensors[3]}</p>
-                  <p class="card-text">${productInfo.mainFeatures.storage}</p>
+                  <h5 class="card-title">Brand-${productInfo.brand}</h5>
+                  <p class="card-text"><strong>Memory-</strong>${productInfo.mainFeatures.memory}</p>
+                  <p class="card-text"><strong>Size-</strong>${productInfo.mainFeatures.displaySize}</p>
+                  <p class="card-text"><strong>Sensors-</strong>${productInfo.mainFeatures.sensors[3]}</p>
+                  <p class="card-text"><strong>Storage-</strong>${productInfo.mainFeatures.storage}</p>
+                  <p class="card-text"><strong>RelaseDate-</strong>${productInfo.releaseDate ? productInfo.releaseDate:'<span class="text-danger">No result Found?</span>'}</p>
                  
                 </div>
     `
