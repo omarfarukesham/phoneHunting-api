@@ -40,7 +40,7 @@ const displayMobileData = (mobiles) => {
                      <div class="card-body">
                        <h5 class="card-title">Brand -${mobile.brand}</h5>
                        <p class="card-text">Name -${mobile.phone_name}</p>
-                       <button type="button" class="btn btn-warning" onclick="loadProductDetails()">Details</button>
+                       <button type="button" class="btn btn-warning" onclick="loadProductDetails('${mobile.slug}')">Details</button>
                      </div>
                    </div>
         
@@ -50,4 +50,12 @@ const displayMobileData = (mobiles) => {
    });
    noResult.innerText = ''
 }   
+}
+
+// products details information showing code here
+const loadProductDetails = (productId) => {
+    console.log(productId)
+    const url = `https://openapi.programming-hero.com/api/phone/${productId}`
+    console.log(url)
+    
 }
