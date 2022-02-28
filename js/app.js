@@ -1,33 +1,45 @@
 //globally id and field value searching code here 
 const searchBox = document.getElementById('search-input')
 const container = document.getElementById('dynamicInfo')
+const getError = document.getElementById('error')
+const noResult = document.getElementById('noResult')
 
 //search button click and getting value for search with api
 const searchMobile = () =>{
     const searchText = searchBox.value 
-    
-    //search api 
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
-    fetch(url)
-    .then(res => res.json())
-    .then(data => displayMobileData(data.data.slice(0,20)))
+    if(searchText == '' || isNaN(searchText) == false ){
+        getError.innerText = 'Empty and Numbers is not allow,search by Name of Mobile Brand'
+        searchBox.value = ''
+        container.innerHTML = ''
+        
+    }else{
+        const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
+        fetch(url)
+        .then(res => res.json())
+        .then(data => displayMobileData(data.data.slice(0,20)))
+        searchBox.value = ''
+        getError.innerText = ''
+    }
 }
 
 
 // displaymobiledata function calling code here 
 const displayMobileData = (mobiles) => {
-    //console.log(mobiles)
+
+     container.innerHTML = ''
+    if(mobiles == ''){
+        noResult.innerText = 'Opp! No result has found, please Try again'
+    }else{
     mobiles.forEach( mobile => {    
-        
         console.log(mobile)
         const div = document.createElement('div')
         div.classList.add('card')
         div.innerHTML = `
                     <div class="card">
-                     <img class="w-75" src="${mobile.image}" alt="Phone Image">
+                     <img class="w-100 h-75" src="${mobile.image}" alt="Phone Image">
                      <div class="card-body">
-                       <h5 class="card-title">Mobile Brand -${mobile.brand}</h5>
-                       <p class="card-text">Mobile Name -${mobile.phone_name}</p>
+                       <h5 class="card-title">Brand -${mobile.brand}</h5>
+                       <p class="card-text">Name -${mobile.phone_name}</p>
                        <button type="button" class="btn btn-warning" onclick="loadProductDetails()">Details</button>
                      </div>
                    </div>
@@ -36,5 +48,6 @@ const displayMobileData = (mobiles) => {
         container.appendChild(div)
 
    });
-   
+   noResult.innerText = ''
+}   
 }
