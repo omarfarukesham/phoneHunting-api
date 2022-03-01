@@ -36,14 +36,14 @@ const displayMobileData = (mobiles) => {
     mobiles.forEach( mobile => {    
         //console.log(mobile)
         const div = document.createElement('div')
-        div.classList.add('card')
+        div.classList.add('col')
         div.innerHTML = `
-                    <div class="card">
+                    <div class="card mt-4">
                      <img class="w-100 h-75" src="${mobile.image}" alt="Phone Image">
                      <div class="card-body">
                        <h5 class="card-title">Brand -${mobile.brand}</h5>
                        <p class="card-text">Name -${mobile.phone_name}</p>
-                       <button type="button" class="btn btn-warning" onclick="loadProductDetails('${mobile.slug}')">Details</button>
+                       <button type="button" id="detailsBtn" class="btn btn-warning" onclick="loadProductDetails('${mobile.slug}')">Details</button>
                      </div>
                    </div>
         
@@ -71,7 +71,6 @@ const displayProductDetails = (productInfo) => {
     const div = document.createElement('div')
     div.classList.add('card')
     div.innerHTML = `
-            
                 <img src="${productInfo.image} " class="card-img-top" alt="product Image">
                 <div class="card-body">
                   <h5 class="card-title">Brand-${productInfo.brand}</h5>
@@ -80,7 +79,7 @@ const displayProductDetails = (productInfo) => {
                   <p class="card-text"><strong>Sensors-</strong>${productInfo.mainFeatures.sensors[3]}</p>
                   <p class="card-text"><strong>Storage-</strong>${productInfo.mainFeatures.storage}</p>
                   <p class="card-text"><strong>RelaseDate-</strong>${productInfo.releaseDate ? productInfo.releaseDate:'<span class="text-danger">No result Found?</span>'}</p>
-                 
+                  <button type="button" class="btn btn-outline-warning">Buy Now</button>
                 </div>
     `
     productDetails.appendChild(div)
