@@ -1,3 +1,9 @@
+/*
+Author: Md. Omar Faruk(Phero-batch(05))
+description: search mobile application based on api 
+*/
+
+
 //globally id and field value searching code here 
 const searchBox = document.getElementById('search-input')
 const container = document.getElementById('dynamicInfo')
@@ -15,10 +21,13 @@ const searchMobile = () =>{
         productDetails.innerText = ''
         
     }else{
+        // api calling code here
         const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
         fetch(url)
         .then(res => res.json())
         .then(data => displayMobileData(data.data.slice(0,20)))
+
+        //text value clear code here
         searchBox.value = ''
         getError.innerText = ''
         productDetails.innerText = ''
@@ -29,7 +38,10 @@ const searchMobile = () =>{
 // displaymobiledata function calling code here 
 const displayMobileData = (mobiles) => {
 
+    //details clear when new product search
      container.innerHTML = ''
+
+     //unknown result valication code
     if(mobiles == ''){
         noResult.innerText = 'Opp! No result has found, please Try again'
     }else{
@@ -46,19 +58,20 @@ const displayMobileData = (mobiles) => {
                        <button type="button" id="detailsBtn" class="btn btn-warning" onclick="loadProductDetails('${mobile.slug}')">Details</button>
                      </div>
                    </div>
-        
-        `
+                 `
         container.appendChild(div)
-
    });
+
+   // no result field clearing code here 
    noResult.innerText = ''
 }   
 }
 
 // products details information showing code here
 const loadProductDetails = (productId) => {
-    //console.log(productId)
-    const url = `https://openapi.programming-hero.com/api/phone/${productId}`
+
+    //Id based 2nd api called code here
+   const url = `https://openapi.programming-hero.com/api/phone/${productId}`
    fetch(url)
    .then(res => res.json())
    .then(data => displayProductDetails(data.data))
@@ -67,7 +80,7 @@ const loadProductDetails = (productId) => {
 
 //product display function code here 
 const displayProductDetails = (productInfo) => {
-    console.log(productInfo)
+   
     productDetails.innerText = ''
     const div = document.createElement('div')
     div.classList.add('card')
@@ -88,8 +101,10 @@ const displayProductDetails = (productInfo) => {
 }
 
 
+//spinner loading code here 
 const loader = document.getElementById('preloader')
 window.onload = function(){
     //hide the preloader
     loader.style.display = 'none'
 }
+
