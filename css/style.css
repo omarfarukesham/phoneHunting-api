@@ -25,3 +25,8 @@
 #cardDesign{
     margin-bottom: 10px;
 }
+#headImg img{
+    border-radius: 50%;
+    max-width: 60px;
+
+}

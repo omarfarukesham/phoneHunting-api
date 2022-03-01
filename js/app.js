@@ -67,6 +67,7 @@ const loadProductDetails = (productId) => {
 
 //product display function code here 
 const displayProductDetails = (productInfo) => {
+    console.log(productInfo)
     productDetails.innerText = ''
     const div = document.createElement('div')
     div.classList.add('card')
@@ -77,10 +78,18 @@ const displayProductDetails = (productInfo) => {
                   <p class="card-text"><strong>Memory-</strong>${productInfo.mainFeatures.memory}</p>
                   <p class="card-text"><strong>Size-</strong>${productInfo.mainFeatures.displaySize}</p>
                   <p class="card-text"><strong>Sensors-</strong>${productInfo.mainFeatures.sensors[3]}</p>
+                  <p class="card-text"><strong>Others-</strong>${productInfo.others ? productInfo.others.WLAN:'<span class="text-danger">No result Found?</span>' }</p>
                   <p class="card-text"><strong>Storage-</strong>${productInfo.mainFeatures.storage}</p>
                   <p class="card-text"><strong>RelaseDate-</strong>${productInfo.releaseDate ? productInfo.releaseDate:'<span class="text-danger">No result Found?</span>'}</p>
                   <button type="button" class="btn btn-outline-warning">Buy Now</button>
                 </div>
     `
     productDetails.appendChild(div)
+}
+
+
+const loader = document.getElementById('preloader')
+window.onload = function(){
+    //hide the preloader
+    loader.style.display = 'none'
 }
